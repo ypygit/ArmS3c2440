@@ -1,1 +1,1 @@
-friendlyArm-mini2440 no Os 
+friendlyArm-mini2440 no OS
