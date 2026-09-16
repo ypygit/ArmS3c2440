@@ -9,7 +9,7 @@ _start:
     mov r1, #0
     str r1, [r0]
 
-    // init sys clock
+    // [1] init sys clock
     bl _init_sysclk
 
     // run main
