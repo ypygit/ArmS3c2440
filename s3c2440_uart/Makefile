@@ -3,7 +3,7 @@
 ###############################
 
 Target=uart_elf
-BIN=uart_bin
+BIN=uart.bin
 
 CROSS_COMPILE ?= arm-linux-
 CC := $(CROSS_COMPILE)gcc
