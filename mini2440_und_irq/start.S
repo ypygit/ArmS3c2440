@@ -3,7 +3,7 @@
 
 _start:
     b _reset
-    ldr pc, =_undirq
+    ldr pc, _undirq
 
 _undirq:
     .word handle_und_exception
@@ -63,17 +63,16 @@ _copy:
     mov r1, #0
     ldr r2, =_bss_beg
     ldr r3, =_end
-
 _clr_bss:
     str r1, [r2]
     add r2, r2, #4
     cmp r2, r3
     ble _clr_bss
 
-undirq_str:
-    .string "the str defined in asm!!"
+    // 
+    ldr pc, =_run_sdram
 
-.align 4
+_run_sdram:
     // [6] init uart
     bl init_uart0
 
@@ -99,3 +98,7 @@ handle_und_exception:
     bl do_undefined_execption
 
     ldmia sp!, {r0-r12, pc}^
+
+undirq_str:
+    .string "the str defined in asm!!"
+
