@@ -12,7 +12,7 @@ static inline void nand_chip_disable(void)
     NFCONT |= (1 << 1);
 }
 
-static inline void nand_cmd(unsigned char cmd)
+static void nand_cmd(unsigned char cmd)
 {
     volatile int i = 0;
 
@@ -21,7 +21,7 @@ static inline void nand_cmd(unsigned char cmd)
     for (; i < 10; i++);
 }
 
-static inline void nand_addr(unsigned char addr)
+static void nand_addr(unsigned char addr)
 {
     volatile int i = 0;
 
