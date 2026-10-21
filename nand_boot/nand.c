@@ -68,13 +68,43 @@ void nand_flash_read_id(void)
     }
 }
 
-void friendlyArm_mini2440_nand_read_data(unsigned int addr, unsigned int len, unsigned char *buff)
+void friendlyArm_mini2440_nand_read_data(unsigned int addr, const unsigned int len, unsigned char *buff)
 {
-    int i = 0;
-    int row = addr / page_size;
-    int column = addr & (page_size - 1);
+	int i = 0;
+	int row = addr / page_size;
+	int column = addr & (page_size - 1);
 
-    while (i < len) {
-    
-    }
+	nand_chip_enable();
+
+	while (i < len) {
+        // send cmd
+        nand_cmd(0x00);
+
+		// send column 0 1
+        nand_addr(column & 0xff);
+        nand_addr((column >> 8) & 0xff);
+        // send row 0 1 2
+        nand_addr(row & 0xff);
+        nand_addr((row >> 8) & 0xff);
+        nand_addr((column >> 16) & 0xff);
+
+        nand_cmd(0x30);
+		
+		// wait ready
+        wait_ready();
+		
+		// read
+		for (; (column < page_size) && (i < len); ++column) {
+			buff[i++] = nand_data();
+		}
+
+		if (i == len) {
+			break;
+		}
+
+		row++;
+		column = 0;
+	}
+
+	nand_chip_disable();
 }
