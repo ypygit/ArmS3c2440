@@ -11,14 +11,15 @@ CSRCS 		  := $(wildcard *.c)
 ASMS 		  := $(wildcard *.S)
 OBJS 		  := $(CSRCS:.c=.o) $(ASMS:.S=.o)
 
-LIBGCC := $(shell $(CC) -print-libgcc-file-name)
+# LIBGCC := $(shell $(CC) -print-libgcc-file-name)
 
 all: $(NAND-BOOT_ELF)
 	$(OBJCOPY) -O binary -S $< $(NAND-BOOT_BIN)
 	$(OBJDUMP) -D $< > $(<:_elf=.dis)
 
+#$(LD) -Tnand_boot.lds $^ $(LIBGCC) -o $@ 
 $(NAND-BOOT_ELF): $(OBJS)
-	$(LD) -Tnand_boot.lds $^ $(LIBGCC) -o $@ 
+	$(LD) -Tnand_boot.lds $^ -o $@ 
 
 %.o: %.c
 	$(CC) -c $< -o $@

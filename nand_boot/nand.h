@@ -9,7 +9,8 @@ void s3c2440_nand_controller_init(void);
 
 void nand_flash_read_id(void);
 
-void friendlyArm_mini2440_nand_read_data(unsigned int addr, unsigned int len, unsigned char *buff);
+void nand_read(unsigned int addr, unsigned char *buff, const unsigned int len);
+
 
 #if defined(__cplusplus)
 }

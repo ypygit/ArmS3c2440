@@ -40,7 +40,7 @@ _start:
     // [4] relocation (copy operator)
     mov r1, #0;             // src_addr
     ldr r2, =_start         // dst_addr
-    ldr r3, =_bss_beg
+    ldr r3, =__bss_beg
 
 _copy:
     ldr r4, [r1]
@@ -54,8 +54,8 @@ _copy:
 
     // [5] set bss zero
     mov r1, #0
-    ldr r2, =_bss_beg
-    ldr r3, =_end
+    ldr r2, =__bss_beg
+    ldr r3, =__end
 
 _clr_bss:
     str r1, [r2]

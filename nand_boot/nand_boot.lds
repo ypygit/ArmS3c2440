@@ -3,6 +3,7 @@ SECTIONS
     . = 0x30000000;
 
     . = ALIGN(4);
+    __code_beg = .;
     .text :
     {
         start.o(.text)
@@ -19,7 +20,7 @@ SECTIONS
     .data : {*(.data)}
 
     . = ALIGN(4);
-    _bss_beg = .;
+    __bss_beg = .;
     .bss : {*(.bss)}
-    _end = .;
+    __end = .;
 }
