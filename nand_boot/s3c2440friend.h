@@ -7,6 +7,11 @@
 #define _MMIO32_ADDR(addr) (*(volatile unsigned int *)(addr))
 
 // GPIO @{
+/** B */
+#define GPBCON _MMIO32_ADDR(0x56000010)
+#define GPBDAT _MMIO32_ADDR(0x56000014)
+#define GPBUP  _MMIO32_ADDR(0x56000018)
+
 /** H */
 #define GPHCON _MMIO32_ADDR(0x56000070)
 #define GPHDAT _MMIO32_ADDR(0x56000074)

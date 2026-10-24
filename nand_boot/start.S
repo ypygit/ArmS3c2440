@@ -37,31 +37,13 @@ _start:
     // [3] init sdram
     bl mini2440_sdram_init
 
+    bl s3c2440_nand_controller_init
+
     // [4] relocation (copy operator)
-    mov r1, #0;             // src_addr
-    ldr r2, =_start         // dst_addr
-    ldr r3, =__bss_beg
-
-_copy:
-    ldr r4, [r1]
-    str r4, [r2]
-
-    add r1, r1, #4          // modify src_addr
-    add r2, r2, #4          // modify dst_addr
-
-    cmp r2, r3
-    ble _copy
-
+    bl copy_code_to_sdram 
+    
     // [5] set bss zero
-    mov r1, #0
-    ldr r2, =__bss_beg
-    ldr r3, =__end
-
-_clr_bss:
-    str r1, [r2]
-    add r2, r2, #4
-    cmp r2, r3
-    ble _clr_bss
+    bl clear_bss;
 
     // [6] run main in sdram
     ldr pc, =main
