@@ -3,7 +3,7 @@
 
 void led1_init(void)
 {
-    GPBCON |= 0x1 << 10;
+    GPBCON |= 1 << 10;
 }
 
 void led1_switch(enum LED_ACTION action)

@@ -34,18 +34,19 @@ _start:
     moveq sp, #4096
     streq r0, [r1]    
 
-    // [3] init sdram
+    // [4] init sdram
     bl mini2440_sdram_init
 
+    // [5] init nand controller
     bl s3c2440_nand_controller_init
 
-    // [4] relocation (copy operator)
+    // [6] relocation (copy operator)
     bl copy_code_to_sdram 
     
-    // [5] set bss zero
+    // [7] set bss zero
     bl clear_bss;
 
-    // [6] run main in sdram
+    // [8] run main in sdram
     ldr pc, =main
  
  _loop:
