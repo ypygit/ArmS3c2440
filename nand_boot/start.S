@@ -37,9 +37,6 @@ _start:
     // [4] init sdram
     bl mini2440_sdram_init
 
-    // [5] init nand controller
-    bl s3c2440_nand_controller_init
-
     // [6] relocation (copy operator)
     bl copy_code_to_sdram 
     

@@ -2,8 +2,6 @@
 
 int is_nand_boot(void)
 {
-    extern int g_bootFlag;
-    
     int isNandBoot = 0;
     volatile unsigned int *begPtr = (volatile unsigned int *)0;
     unsigned int backup = *begPtr, testV = 0x12345678;
@@ -14,8 +12,6 @@ int is_nand_boot(void)
         isNandBoot = 1;
         *begPtr = backup;
     }
-
-    g_bootFlag = isNandBoot;
 
     return isNandBoot;
 }
@@ -32,7 +28,7 @@ void copy_code_to_sdram(void)
                             - (unsigned long)&__code_beg);
 
     if (is_nand_boot()) {
-        nand_flash_read_id();
+        s3c2440_nand_controller_init();
         nand_read(0u, (unsigned char*)dest, len);
     } else {
         // nor

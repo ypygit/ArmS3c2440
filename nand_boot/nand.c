@@ -1,8 +1,7 @@
 #include "nand.h"
-#include "hwuart.h"
 #include "s3c2440friend.h"
 
-const unsigned int page_size = 2 * 1024U;
+enum {page_size = 2 * 1024};
 
 static inline void nand_chip_enable(void)
 {

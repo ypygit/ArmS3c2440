@@ -4,7 +4,6 @@
 unsigned int g_v = 1;
 const char g_s = 'S';
 char g_e = 'E';
-int g_bootFlag = 0; 
 
 void delay()
 {
@@ -18,7 +17,6 @@ int main(void)
     init_uart0();
     led1_init();
 
-    put_string(g_bootFlag == 1 ? "from nand boot\r\n" : "from nor boot\r\n");
     put_string("main run in sdram\r\n");
 
     while (1) {
