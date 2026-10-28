@@ -6,8 +6,8 @@ enum LED_ACTION {
     LED_OFF
 };
 
-void led1_init(void);
+void led2_init(void);
 
-void led1_switch(enum LED_ACTION action);
+void led2_switch(enum LED_ACTION action);
 
 #endif

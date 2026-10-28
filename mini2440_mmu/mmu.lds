@@ -1,6 +1,6 @@
 SECTIONS
 {
-    . = 0x30000000;
+    . = 0xB0000000;
 
     . = ALIGN(4);
     __text_beg = .;
