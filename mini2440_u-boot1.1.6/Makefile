@@ -1879,9 +1879,9 @@ smdk2400_config	:	unconfig
 smdk2410_config	:	unconfig
 	@$(MKCONFIG) $(@:_config=) arm arm920t smdk2410 NULL s3c24x0
 
-## for friendlyArm mini2440 development board, add by yao
-friendlymini2440_config: unconfig
-	@$(MKCONFIG) $(@:_config=) arm arm920t friendlymini2440 NULL s3c24x0
+# for friendlyArm mini2440 board
+frdArm_mini2440_cfg: unconfig
+	@$(MKCONFIG) $(@:_cfg=) arm arm920t frdArm_mini2440 NULL s3c24x0
 
 SX1_config :		unconfig
 	@$(MKCONFIG) $(@:_config=) arm arm925t sx1
